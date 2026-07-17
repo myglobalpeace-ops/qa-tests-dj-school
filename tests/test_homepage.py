@@ -1,22 +1,13 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from pages.home_page import HomePage
 
 
-def test_homepage_open():
 
-    driver = webdriver.Chrome(
-        service=Service(
-            ChromeDriverManager().install()
-        )
-    )
+def test_homepage_open(driver):
 
-    driver.get(
-        "https://myglobalpeace-ops.github.io/DJ-Shool/"
-    )
+    page = HomePage(driver)
 
 
-    assert "DJ" in driver.title
+    page.open()
 
 
-    driver.quit()
+    assert "DJ" in page.get_title()
